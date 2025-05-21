@@ -3,6 +3,18 @@
 <script src='https://cdn.tailwindcss.com'></script>
 <link rel='stylesheet' href='/static/css/bbva.css'>
 </head><body class='bg-gray-50 text-gray-900'>
-<nav class='bg-[#081f5c] text-white p-4'><h1 class='text-xl font-bold'>RH Psicométrico</h1></nav>
+<nav class="bg-[#081f5c] text-white px-4 py-3 flex items-center justify-between">
+  <!-- Logo + título -->
+  <div class="flex items-center gap-4">
+    <img src="/static/img/logo.png" alt="Formas Generales" class="h-9"/>
+    <span class="font-semibold text-lg">RH Psicométrico</span>
+  </div>
+  <!-- Links -->
+  <div class="flex items-center gap-6 text-sm">
+    <a href="/rh" class="hover:text-gray-200">Inicio</a>
+    <a href="/rh/panel" class="hover:text-gray-200">Panel</a>
+    <a href="/rh/resultados" class="hover:text-gray-200">Resultados</a>
+  </div>
+</nav>
 <main class='max-w-6xl mx-auto p-6'>{% block content %}{% endblock %}</main>
 </body></html>
