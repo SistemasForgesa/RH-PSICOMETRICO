@@ -1,0 +1,9 @@
+fastapi
+uvicorn[standard]
+python-multipart
+pymongo
+jinja2
+aiofiles
+mammoth
+beautifulsoup4
+python-dotenv

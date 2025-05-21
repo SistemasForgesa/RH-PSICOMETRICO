@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Exámenes de {{ aspirante.nombre }}</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 p-6 text-gray-800">
+  <div class="max-w-4xl mx-auto bg-white p-6 rounded-xl shadow space-y-6">
+    <h1 class="text-2xl font-bold mb-4 text-center">Evaluación psicométrica</h1>
+    <p class="text-center text-sm text-gray-500 mb-6">Aspirante: {{ aspirante.nombre }}</p>
+    <form method="post">
+      {% for ex in examenes %}
+        <div class="border p-4 rounded mb-4 shadow">
+          <h2 class="font-bold mb-2">{{ ex.nombre }}</h2>
+          <div class="prose max-w-none">{{ ex.html | safe }}</div>
+        </div>
+      {% endfor %}
+      <div class="text-center mt-6">
+        <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700">Enviar respuestas</button>
+      </div>
+    </form>
+  </div>
+</body>
+</html>
