@@ -1,0 +1,76 @@
+{% extends 'layout.html' %}{% block content %}
+
+<!-- Hero -->
+<section class="mb-8">
+  <h1 class="text-3xl font-bold text-[#081f5c] mb-2">
+    Panel RH – Evaluaciones Psicométricas
+  </h1>
+  <p class="text-gray-600">
+    Gestiona exámenes, candidatos y resultados desde un solo lugar.
+  </p>
+</section>
+
+<!-- Acciones principales -->
+<div class="grid md:grid-cols-3 gap-6 mb-10">
+  <!-- Subir examen -->
+  <a href="/rh/panel#subir" class="card p-6 hover:shadow-md transition">
+    <div class="flex items-center gap-3 mb-4">
+      <svg class="w-8 h-8 text-[#081f5c]" fill="none" stroke="currentColor" stroke-width="2"
+           viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round"
+              d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5-5m0 0l5 5m-5-5v12"/>
+      </svg>
+      <h3 class="text-lg font-bold text-[#081f5c]">Subir examen</h3>
+    </div>
+    <p class="text-sm text-gray-600">Convierte un archivo DOCX a examen interactivo.</p>
+  </a>
+
+  <!-- Asignar exámenes -->
+  <a href="/rh/panel#asignar" class="card p-6 hover:shadow-md transition">
+    <div class="flex items-center gap-3 mb-4">
+      <svg class="w-8 h-8 text-[#081f5c]" fill="none" stroke="currentColor" stroke-width="2"
+           viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round"
+              d="M18 9l3 3m0 0l-3 3m3-3H6"/>
+        <path stroke-linecap="round" stroke-linejoin="round"
+              d="M3 4a1 1 0 011-1h6a1 1 0 011 1v1m0 14v1a1 1 0 01-1 1H4a1 1 0 01-1-1V4z"/>
+      </svg>
+      <h3 class="text-lg font-bold text-[#081f5c]">Asignar exámenes</h3>
+    </div>
+    <p class="text-sm text-gray-600">Envía un enlace único al aspirante.</p>
+  </a>
+
+  <!-- Aspirantes -->
+  <a href="/rh/panel" class="card p-6 hover:shadow-md transition">
+    <div class="flex items-center gap-3 mb-4">
+      <svg class="w-8 h-8 text-[#081f5c]" fill="none" stroke="currentColor" stroke-width="2"
+           viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round"
+              d="M17 20h5V4H2v16h5m10 0V10m0 10l-4-4m4 4l4-4"/>
+      </svg>
+      <h3 class="text-lg font-bold text-[#081f5c]">Aspirantes</h3>
+    </div>
+    <p class="text-sm text-gray-600">Consulta resultados y estatus.</p>
+  </a>
+</div>
+
+<!-- Estadísticas rápidas -->
+<div class="card p-6">
+  <h3 class="text-lg font-bold text-[#081f5c] mb-4">Estadísticas rápidas</h3>
+  <ul class="grid sm:grid-cols-3 gap-4 text-center">
+    <li>
+      <p class="text-2xl font-bold text-[#081f5c]">{{ exams_count }}</p>
+      <p class="text-sm text-gray-600">Exámenes</p>
+    </li>
+    <li>
+      <p class="text-2xl font-bold text-[#081f5c]">{{ aspirantes_count }}</p>
+      <p class="text-sm text-gray-600">Aspirantes</p>
+    </li>
+    <li>
+      <p class="text-2xl font-bold text-[#081f5c]">{{ respondidos_count }}</p>
+      <p class="text-sm text-gray-600">Exámenes contestados</p>
+    </li>
+  </ul>
+</div>
+
+{% endblock %}
