@@ -1,0 +1,57 @@
+{% extends 'layout.html' %}
+{% block content %}
+<h2 class="text-2xl font-bold text-[#081f5c] mb-4 flex items-center gap-2">
+  <svg class="w-6 h-6 text-[#081f5c]" xmlns="http://www.w3.org/2000/svg" fill="none"
+       viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round"
+       stroke-linejoin="round" stroke-width="2"
+       d="M8 10h.01M12 10h.01M16 10h.01M9 16h6M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+  Resultados de {{ c.nombre }}
+</h2>
+
+<div class="bg-white rounded-2xl shadow p-6 mb-6">
+  <table class="w-full text-sm">
+    <thead>
+      <tr class="text-left text-[#081f5c] font-semibold">
+        <th>Examen</th><th class="text-center">Promedio</th>
+        <th class="text-center">Nivel</th><th class="text-center">Riesgo</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for ex, info in resumen.items() %}
+      <tr class="border-t">
+        <td class="py-2">{{ ex }}</td>
+        <td class="py-2 text-center font-medium">{{ info.promedio }}</td>
+        <td class="py-2 text-center">{{ info.nivel }}</td>
+        <td class="py-2 text-center">{{ info.riesgo }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<div class="bg-white rounded-2xl shadow p-6 mb-8">
+  <canvas id="chart"></canvas>
+</div>
+
+{% for ex, info in resumen.items() %}
+  <div class="bg-gray-50 rounded-2xl p-6 mb-4 shadow">
+    <h3 class="text-lg font-bold text-[#081f5c] mb-2">{{ ex }}</h3>
+    <p class="mb-3 text-gray-600">{{ info.interpretacion }}</p>
+  </div>
+{% endfor %}
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+const labels = {{ resumen.keys() | list | safe }};
+const data   = {{ resumen.values() | map(attribute='promedio') | list | safe }};
+new Chart(document.getElementById('chart'), {
+  type:'radar',
+  data:{ labels,
+         datasets:[{ label:'Promedio',
+                     data,
+                     borderColor:'#081f5c',
+                     backgroundColor:'rgba(8,31,92,0.15)' }] },
+  options:{ scales:{ r:{ beginAtZero:true, max:100 } } }
+});
+</script>
+{% endblock %}
