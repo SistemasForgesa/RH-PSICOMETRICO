@@ -1,10 +1,24 @@
 {% extends 'layout.html' %}{% block content %}
-<h2 class='text-2xl font-semibold mb-4'>Panel RH (Preview)</h2>
-<div class='grid md:grid-cols-2 gap-6'>
-<div class='card bg-white p-6'>
-<h3 class='text-lg font-bold mb-2'>Aspirante: Ejemplo</h3>
-<p class='text-sm mb-4'>Fecha: 2025-05-21</p>
-<div class='card bg-indigo-50 p-4 mb-2'><p>DINAMISMO: <span class='font-bold'>78</span> (Alto)</p></div>
-<button class='btn mt-4'>Asignar nuevo</button>
-</div></div>
+<h2 class="text-2xl font-semibold mb-4">Panel RH</h2>
+
+<div class="grid md:grid-cols-2 gap-6">
+  {% for asp in aspirantes %}
+  <div class="card bg-white p-6">
+    <h3 class="text-lg font-bold mb-2">Aspirante: {{ asp.nombre }}</h3>
+    <p class="text-sm mb-4">Fecha: {{ asp.fecha }}</p>
+
+    <!-- resumen rápido (ejemplo) -->
+    {% if asp.resultados %}
+      {% for ex, info in asp.resultados.items()|list[:1] %}
+        <div class="card bg-indigo-50 p-4 mb-2">
+          {{ ex }}: <span class="font-bold">{{ info.promedio }}</span> ({{ info.nivel }})
+        </div>
+      {% endfor %}
+    {% endif %}
+
+    <!-- ⬇️ Enlace dinámico -->
+    <a href="/rh/resultados/{{ asp._id }}" class="btn mt-4">Ver detalles</a>
+  </div>
+  {% endfor %}
+</div>
 {% endblock %}
