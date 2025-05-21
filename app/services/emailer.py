@@ -12,9 +12,10 @@ def enviar_enlace(destinatario, enlace):
     mensaje["Subject"] = "Evaluación psicométrica"
     mensaje["From"] = remitente
     mensaje["To"] = destinatario
-    mensaje.set_content(f"Hola, por favor accede al siguiente enlace para completar tu evaluación:")
+    mensaje.set_content(f"""Hola, por favor accede al siguiente enlace para completar tu evaluación:
 
-{enlace}")
+{enlace}
+""")
 
     with smtplib.SMTP(smtp_host, smtp_port) as smtp:
         smtp.starttls()
