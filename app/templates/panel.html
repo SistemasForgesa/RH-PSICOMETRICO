@@ -1,28 +1,65 @@
 {% extends 'layout.html' %}{% block content %}
-<h2 class="text-2xl font-semibold mb-4">Panel RH</h2>
+<h2 class="text-2xl font-semibold mb-6">Panel RH</h2>
 
+<!-- ╔═════════ SUBIR NUEVO EXAMEN ═════════╗ -->
+<div class="card bg-white p-6 mb-8">
+  <h3 class="text-lg font-bold text-[#081f5c] mb-4">Subir nuevo examen</h3>
+  <form action="/rh/upload" method="post" enctype="multipart/form-data" class="flex flex-wrap gap-4">
+    <input type="text" name="nombre" placeholder="Nombre del examen"
+           class="flex-1 border p-2 rounded" required>
+    <input type="file" name="archivo" accept=".docx"
+           class="flex-1 border p-2 rounded" required>
+    <button class="btn">Subir</button>
+  </form>
+</div>
+
+<!-- ╔═════════ ASIGNAR EXÁMENES A ASPIRANTE ═════════╗ -->
+<div class="card bg-white p-6 mb-10">
+  <h3 class="text-lg font-bold text-[#081f5c] mb-4">Asignar exámenes</h3>
+  <form action="/rh/asignar" method="post" class="space-y-4">
+    <div class="grid md:grid-cols-2 gap-4">
+      <input name="nombre" placeholder="Nombre aspirante" class="border p-2 rounded" required>
+      <input name="correo" placeholder="Correo aspirante" class="border p-2 rounded" required>
+    </div>
+    <p class="font-semibold">Selecciona exámenes:</p>
+    <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-2 max-h-40 overflow-y-auto border p-3 rounded">
+      {% for ex in exams %}
+        <label class="flex items-center gap-2 text-sm">
+          <input type="checkbox" name="examenes" value="{{ ex._id }}">
+          {{ ex.nombre }}
+        </label>
+      {% endfor %}
+    </div>
+    <button class="btn">Asignar</button>
+  </form>
+</div>
+
+<!-- ╔═════════ LISTA DE ASPIRANTES ═════════╗ -->
+<h3 class="text-xl font-bold text-[#081f5c] mb-4">Aspirantes</h3>
 <div class="grid md:grid-cols-2 gap-6">
   {% for asp in aspirantes %}
   <div class="card bg-white p-6">
-    <h3 class="text-lg font-bold mb-2">Aspirante: {{ asp.nombre }}</h3>
-    <p class="text-sm mb-4">Fecha: {{ asp.fecha }}</p>
+    <h4 class="text-lg font-bold mb-2">Aspirante: {{ asp.nombre }}</h4>
+    <p class="text-sm mb-4">Correo: {{ asp.correo }}</p>
 
-    <!-- resumen rápido: muestra SOLO el primer examen -->
+    <!-- resumen rápido -->
     {% if asp.resultados %}
       {% set first = asp.resultados|dict2items|first %}
       {% if first %}
-        <div class="card bg-indigo-50 p-4 mb-2">
+        <div class="card bg-indigo-50 p-3 mb-3 text-sm">
           {{ first[0] }}:
-          <span class="font-bold">{{ first[1].promedio }}</span>
-          ({{ first[1].nivel }})
+          <span class="font-bold">{{ first[1].promedio }}</span> ({{ first[1].nivel }})
         </div>
       {% endif %}
     {% endif %}
 
-    <!-- Enlace dinámico -->
-    <a href="/rh/resultados/{{ asp._id }}" class="btn mt-4">Ver detalles</a>
+    <a href="/rh/resultados/{{ asp._id }}" class="btn">Ver detalles</a>
   </div>
   {% endfor %}
+  {% if aspirantes|length == 0 %}
+    <p class="text-gray-500 col-span-full">Aún no hay aspirantes registrados.</p>
+  {% endif %}
 </div>
 {% endblock %}
+
 
