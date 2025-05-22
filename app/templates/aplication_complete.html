@@ -1,0 +1,23 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-16 text-center"> {# Aumenté el padding vertical para centrar más #}
+    <h1 class="text-4xl font-bold text-[#081f5c] mb-6">¡Aplicación de Exámenes Completada!</h1>
+
+    {# Puedes mostrar el nombre del aspirante si lo pasas desde la ruta #}
+    {% if aspirante and aspirante.nombre %}
+        <p class="text-xl text-gray-700 mb-8">Gracias, {{ aspirante.nombre }}, por completar tus exámenes.</p>
+    {% else %}
+        <p class="text-xl text-gray-700 mb-8">Gracias por completar tus exámenes.</p>
+    {% endif %}
+
+    <p class="text-gray-600 mb-8">
+        Tus respuestas han sido guardadas. El personal de Recursos Humanos revisará tus resultados.
+    </p>
+
+    {# Opcional: Un enlace para volver a la página principal o a un panel si existe #}
+    <a href="{{ url_for('home') }}" class="inline-block bg-[#081f5c] hover:bg-[#0b2e8c] text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+        Volver a la página principal
+    </a>
+</div>
+{% endblock %}
