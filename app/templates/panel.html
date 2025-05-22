@@ -1,65 +1,65 @@
 {% extends 'layout.html' %}{% block content %}
-<h2 class="text-2xl font-semibold mb-6">Panel RH</h2>
+<section class="bg-white p-6 rounded-lg shadow-md mb-12"> {# Añadido clases para el estilo BBVA #}
+  <h1 class="text-3xl font-bold text-[#081f5c] mb-6 text-center">Panel de Administración</h1> {# Añadido text-center #}
 
-<!-- ╔═════════ SUBIR NUEVO EXAMEN ═════════╗ -->
-<div class="card bg-white p-6 mb-8">
-  <h3 class="text-lg font-bold text-[#081f5c] mb-4">Subir nuevo examen</h3>
-  <form action="/rh/upload" method="post" enctype="multipart/form-data" class="flex flex-wrap gap-4">
-    <input type="text" name="nombre" placeholder="Nombre del examen"
-           class="flex-1 border p-2 rounded" required>
-    <input type="file" name="archivo" accept=".docx"
-           class="flex-1 border p-2 rounded" required>
-    <button class="btn">Subir</button>
-  </form>
-</div>
-
-<!-- ╔═════════ ASIGNAR EXÁMENES A ASPIRANTE ═════════╗ -->
-<div class="card bg-white p-6 mb-10">
-  <h3 class="text-lg font-bold text-[#081f5c] mb-4">Asignar exámenes</h3>
-  <form action="/rh/asignar" method="post" class="space-y-4">
-    <div class="grid md:grid-cols-2 gap-4">
-      <input name="nombre" placeholder="Nombre aspirante" class="border p-2 rounded" required>
-      <input name="correo" placeholder="Correo aspirante" class="border p-2 rounded" required>
+  <h2 class="text-2xl font-bold text-[#081f5c] mb-4">Exámenes Disponibles</h2>
+  {% if exams %}
+    <div class="overflow-x-auto mb-8"> {# Para tablas responsivas #}
+      <table class="min-w-full divide-y divide-gray-200">
+        <thead class="bg-gray-50">
+          <tr>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Nombre del Examen
+            </th>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Acciones
+            </th>
+          </tr>
+        </thead>
+        <tbody class="bg-white divide-y divide-gray-200">
+          {% for ex in exams %}
+            <tr>
+              <td class="px-6 py-4 whitespace-nowrap">{{ ex.nombre }}</td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                <a href="/rh/eliminar_examen/{{ ex._id }}" class="text-red-600 hover:text-red-900">Eliminar</a>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
     </div>
-    <p class="font-semibold">Selecciona exámenes:</p>
-    <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-2 max-h-40 overflow-y-auto border p-3 rounded">
-      {% for ex in exams %}
-        <label class="flex items-center gap-2 text-sm">
-          <input type="checkbox" name="examenes" value="{{ ex._id }}">
-          {{ ex.nombre }}
-        </label>
-      {% endfor %}
-    </div>
-    <button class="btn">Asignar</button>
-  </form>
-</div>
-
-<!-- ╔═════════ LISTA DE ASPIRANTES ═════════╗ -->
-<h3 class="text-xl font-bold text-[#081f5c] mb-4">Aspirantes</h3>
-<div class="grid md:grid-cols-2 gap-6">
-  {% for asp in aspirantes %}
-  <div class="card bg-white p-6">
-    <h4 class="text-lg font-bold mb-2">Aspirante: {{ asp.nombre }}</h4>
-    <p class="text-sm mb-4">Correo: {{ asp.correo }}</p>
-
-    <!-- resumen rápido -->
-    {% if asp.resultados %}
-      {% set first = asp.resultados|dict2items|first %}
-      {% if first %}
-        <div class="card bg-indigo-50 p-3 mb-3 text-sm">
-          {{ first[0] }}:
-          <span class="font-bold">{{ first[1].promedio }}</span> ({{ first[1].nivel }})
-        </div>
-      {% endif %}
-    {% endif %}
-
-    <a href="/rh/resultados/{{ asp._id }}" class="btn">Ver detalles</a>
-  </div>
-  {% endfor %}
-  {% if aspirantes|length == 0 %}
-    <p class="text-gray-500 col-span-full">Aún no hay aspirantes registrados.</p>
+  {% else %}
+    <p class="text-center text-gray-600 mb-8">No hay exámenes disponibles.</p>
   {% endif %}
-</div>
+
+  <h2 class="text-2xl font-bold text-[#081f5c] mb-4">Usuarios (RH)</h2>
+  {% if users %}
+    <div class="overflow-x-auto"> {# Para tablas responsivas #}
+      <table class="min-w-full divide-y divide-gray-200">
+        <thead class="bg-gray-50">
+          <tr>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Correo Electrónico
+            </th>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Acciones
+            </th>
+          </tr>
+        </thead>
+        <tbody class="bg-white divide-y divide-gray-200">
+          {% for user in users %}
+            <tr>
+              <td class="px-6 py-4 whitespace-nowrap">{{ user.correo }}</td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                <a href="/rh/eliminar_usuario/{{ user._id }}" class="text-red-600 hover:text-red-900">Eliminar</a>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% else %}
+    <p class="text-center text-gray-600">No hay usuarios registrados.</p>
+  {% endif %}
+</section>
 {% endblock %}
-
-
