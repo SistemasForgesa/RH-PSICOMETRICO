@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Request, Form, UploadFile, File
+from fastapi import APIRouter, Request, Form, UploadFile, File, HTTPException
 from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
 from bson.objectid import ObjectId
@@ -6,6 +6,7 @@ from pymongo import MongoClient
 from dotenv import load_dotenv
 from app.services import converter, emailer
 import os, uuid
+import io # Importar la librería io
 
 load_dotenv()
 
@@ -48,9 +49,22 @@ async def subir_page(request: Request):
 
 @router.post("/upload")
 async def upload_exam(nombre: str = Form(...), archivo: UploadFile = File(...)):
-    html_content = await converter.convert_docx_to_html(archivo)
-    exams.insert_one({"nombre": nombre, "html": html_content})
-    return RedirectResponse(url="/rh/subir", status_code=303)
+    try:
+        # Leer el contenido del archivo subido
+        contents = await archivo.read()
+        # Usar io.BytesIO para pasar el contenido como un archivo en memoria
+        docx_file = io.BytesIO(contents)
+
+        # Pasar el archivo en memoria a la función de conversión
+        html_content = await converter.convert_docx_to_html(docx_file)
+
+        exams.insert_one({"nombre": nombre, "html": html_content})
+        return RedirectResponse(url="/rh/subir", status_code=303)
+    except Exception as e:
+        # Imprimir el error en la consola del servidor
+        print(f"Error al subir el examen: {e}")
+        # Opcional: Devolver un error más amigable al usuario
+        raise HTTPException(status_code=500, detail=f"Error interno del servidor al procesar el archivo: {e}")
 
 
 # ────────────────────────  ASIGNAR EXÁMENES (página)  ─────────────────
