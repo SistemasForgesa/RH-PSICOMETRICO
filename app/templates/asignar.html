@@ -1,28 +1,23 @@
 {% extends 'layout.html' %}{% block content %}
-<section class="grid md:grid-cols-2 gap-10 items-center mb-12">
+<section class="bg-white p-6 rounded-lg shadow-md mb-12 grid md:grid-cols-2 gap-10 items-center"> {# Añadido clases para el estilo BBVA #}
   <div>
-    <h1 class="text-3xl font-bold text-[#081f5c] mb-4">Asignar exámenes</h1>
-    <p class="text-gray-600 mb-6">Envía un enlace único de evaluación al aspirante.</p>
+    <h1 class="text-3xl font-bold text-[#081f5c] mb-4 text-center md:text-left">Asignar exámenes</h1> {# Añadido text-center y md:text-left para responsividad #}
+    <p class="text-gray-600 mb-6 text-center md:text-left">Envía un enlace único de evaluación al aspirante.</p> {# Añadido text-center y md:text-left para responsividad #}
     <form action="/rh/asignar" method="post" class="space-y-4">
       <div class="grid md:grid-cols-2 gap-4">
         <input name="nombre" placeholder="Nombre aspirante"
-               class="border p-3 rounded" required>
+               class="border p-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" required> {# Añadidos estilos focus #}
         <input name="correo" placeholder="Correo aspirante"
-               class="border p-3 rounded" required>
+               class="border p-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" required> {# Añadidos estilos focus #}
       </div>
       <p class="font-semibold text-[#081f5c]">Selecciona exámenes:</p>
       <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-2 max-h-44 overflow-y-auto border p-3 rounded">
-        {% for ex in exams %}
-          <label class="flex items-center gap-2 text-sm">
-            <input type="checkbox" name="examenes" value="{{ ex._id }}">
-            {{ ex.nombre }}
-          </label>
-        {% endfor %}
+        {% for ex in exams %}\n          <label class="flex items-center gap-2 text-sm">\n            <input type="checkbox" name="examenes" value="{{ ex._id }}">\n            {{ ex.nombre }}\n          </label>\n        {% endfor %}
       </div>
-      <button class="btn-primary">Asignar</button>
+      <button class="btn-primary w-full md:w-auto">Asignar</button> {# Añadido w-full para pantallas pequeñas y md:w-auto para medianas/grandes #}
     </form>
   </div>
   <img src="https://undraw-static.vercel.app/illustrations/undraw_share_link_re_54rx.svg"
-       class="w-full max-h-72 object-contain" alt="assign"/>
+       class="w-full max-h-72 object-contain rounded-lg" alt="assign"/> {# Añadido rounded-lg para bordes redondeados #}
 </section>
 {% endblock %}
