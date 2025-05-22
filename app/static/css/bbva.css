@@ -1,6 +1,6 @@
 :root {
-    --bbva-blue: #0047ba; /* Un azul similar al de BBVA */
-    --bbva-dark-blue: #081f5c; /* El azul oscuro que ya tienes */
+    --bbva-blue: #0047ba; /* Un azul similar al de BBVA (ya no lo usaremos para botones/iconos) */
+    --bbva-dark-blue: #081f5c; /* El azul oscuro que usaremos para botones/iconos y la barra de navegación */
     --bbva-light-gray: #f4f4f4; /* Un gris claro para fondos */
     --bbva-gray: #cccccc; /* Un gris medio */
     --bbva-dark-gray: #666666; /* Un gris oscuro para texto */
@@ -22,7 +22,6 @@ h1, h2, h3 {
 
 h1 {
     font-size: 2.5em; /* Tamaño más grande para el título principal */
-    /* Nueva tipografía para el h1 principal: Roboto */
     font-family: 'Roboto', sans-serif;
     text-align: center; /* Asegurar centrado */
     margin-bottom: 0.5em; /* Espacio debajo del h1 */
@@ -53,7 +52,7 @@ section img {
 
 .btn-primary {
     display: inline-block; /* Asegurar que el padding funcione */
-    background-color: var(--bbva-blue); /* Fondo azul principal */
+    background-color: var(--bbva-dark-blue); /* Fondo azul oscuro para el botón principal */
     color: var(--bbva-white); /* Texto blanco */
     padding: 10px 20px;
     border-radius: 5px; /* Bordes redondeados */
@@ -62,13 +61,13 @@ section img {
 }
 
 .btn-primary:hover {
-    background-color: #003a99; /* Un azul un poco más oscuro al pasar el cursor */
+    background-color: #061a4c; /* Un azul oscuro un poco más oscuro al pasar el cursor */
 }
 
 .btn-outline {
     display: inline-block;
-    border: 2px solid var(--bbva-blue); /* Borde azul */
-    color: var(--bbva-blue); /* Texto azul */
+    border: 2px solid var(--bbva-dark-blue); /* Borde azul oscuro */
+    color: var(--bbva-dark-blue); /* Texto azul oscuro */
     padding: 10px 20px;
     border-radius: 5px;
     text-decoration: none;
@@ -76,7 +75,7 @@ section img {
 }
 
 .btn-outline:hover {
-    background-color: var(--bbva-blue); /* Fondo azul al pasar el cursor */
+    background-color: var(--bbva-dark-blue); /* Fondo azul oscuro al pasar el cursor */
     color: var(--bbva-white); /* Texto blanco al pasar el cursor */
 }
 
@@ -96,7 +95,7 @@ section img {
 }
 
 .card svg {
-    color: var(--bbva-blue); /* Iconos en azul */
+    color: var(--bbva-dark-blue); /* Iconos en azul oscuro */
 }
 
 /* Estilo específico para el contenedor del texto principal para asegurar centrado */
