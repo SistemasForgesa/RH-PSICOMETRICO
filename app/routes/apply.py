@@ -4,6 +4,8 @@ from pymongo import MongoClient
 from bson.objectid import ObjectId
 import os
 from dotenv import load_dotenv
+from app.services.exam_parser import parse_exam_html # <--- Agrega esta línea
+
 
 # Cargar variables de entorno
 load_dotenv()
