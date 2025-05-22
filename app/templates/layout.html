@@ -1,11 +1,16 @@
-<!DOCTYPE html><html lang='es'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'>
-<title>{{ title or 'RH Psicométrico' }}</title>
+<!DOCTYPE html>
+<html lang='es'>
+<head>
+<meta charset='utf-8'>
+<meta name='viewport' content='width=device-width,initial-scale=1'>
+<title>{{ title or '' }}</title> {# Eliminado 'RH Psicométrico' de la variable title #}
 <script src='https://cdn.tailwindcss.com'></script>
 <link rel='stylesheet' href='/static/css/bbva.css'>
-</head><body class='bg-gray-50 text-gray-900'>
+</head>
+<body class='bg-gray-50 text-gray-900'>
 <nav class="bg-[#081f5c] text-white px-6 py-3 flex items-center justify-between">
   <div class="flex items-center gap-4">
-    <img src="/static/img/logo.png" alt="Formas Generales" class="h-9"> RH Psicométrico
+    <img src="/static/img/logo.png" alt="Formas Generales" class="h-9"> {# Texto "RH Psicométrico" eliminado de aquí #}
   </div>
   <ul class="flex gap-6 text-sm">
     <li><a href="/rh"        class="hover:text-gray-200">Inicio</a></li>
@@ -15,4 +20,5 @@
   </ul>
 </nav>
 <main class='max-w-6xl mx-auto p-6'>{% block content %}{% endblock %}</main>
-</body></html>
+</body>
+</html>
