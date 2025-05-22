@@ -1,12 +1,11 @@
+/*  ───────────  VARIABLES  ─────────── */
 :root {
   --bbva-blue: #081f5c;         /* azul marino principal */
   --bbva-blue-light: #0b2e8c;   /* hover / variante */
-  --bbva-blue: #0047ba; /* Un azul similar al de BBVA */
-  --bbva-dark-blue: #081f5c; /* El azul oscuro que ya tienes */
+  --bbva-blue: #0047ba;
   --bbva-gray-bg: #f5f7fa;      /* gris de fondo suave */
   --bbva-light-gray: #f4f4f4; /* Un gris claro para fondos */
-  --bbva-gray: #cccccc; /* Un gris medio */
-  --bbva-dark-gray: #666666; /* Un gris oscuro para texto */
+  --bbva-dark-gray: #666666;
   --bbva-white: #ffffff; /* Blanco */
 }
 
@@ -15,8 +14,6 @@ body {
   font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
   font-family: sans-serif;
-  line-height: 1.6;
-  background: var(--bbva-gray-bg);
   color: #111827;
   color: var(--bbva-dark-gray);
   background-color: var(--bbva-light-gray);
@@ -31,8 +28,19 @@ h1, h2, h3 {
   color: var(--bbva-dark-blue);
   font-weight: bold;
 }
-h1 { font-size: 2.5em; }
-h2 { font-size: 2em; margin-bottom: 20px; }
+h1 {
+    font-size: 2.5em;
+    /* Nueva tipografía para el h1 principal */
+    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    text-align: center; /* Asegurar centrado */
+    margin-bottom: 0.5em; /* Espacio debajo del h1 */
+}
+
+h2 {
+    font-size: 2em;
+    margin-bottom: 20px; /* Espacio debajo de los encabezados */
+    text-align: center; /* Asegurar centrado */
+}
 
 .card {
   background: #fff;
@@ -54,11 +62,9 @@ h2 { font-size: 2em; margin-bottom: 20px; }
 .btn-primary {
   background: var(--bbva-blue);
   color: var(--bbva-white);
-  padding: 0.6rem 1.4rem;
   padding: 10px 20px;
-  border-radius: 0.5rem;
   border-radius: 5px;
-  text-decoration: none;
+  text-decoration: none; /* Quitar subrayado */
   transition: background-color 0.3s ease;
 }
 .btn-primary:hover {
@@ -69,9 +75,8 @@ h2 { font-size: 2em; margin-bottom: 20px; }
 .btn-outline {
   border: 2px solid var(--bbva-blue);
   color: var(--bbva-blue);
-  padding: 0.55rem 1.4rem;  padding: 10px 20px;
-  border-radius: 0.5rem;
-  border-radius: 5px;
+  padding: 10px 20px;
+  border-radius: 5px; /* Bordes redondeados */
   text-decoration: none;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
@@ -85,7 +90,9 @@ section {
   background-color: var(--bbva-white);
   padding: 30px;
   border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    /* Sombra más remarcada */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
 }
 section img { border-radius: 8px; }
 
@@ -138,7 +145,8 @@ label.inline-flex {
   background-color: var(--bbva-white);
   padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  /* Sombra más remarcada */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 .card svg { color: var(--bbva-blue); }
