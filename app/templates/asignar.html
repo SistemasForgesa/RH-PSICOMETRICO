@@ -1,0 +1,28 @@
+{% extends 'layout.html' %}{% block content %}
+<section class="grid md:grid-cols-2 gap-10 items-center mb-12">
+  <div>
+    <h1 class="text-3xl font-bold text-[#081f5c] mb-4">Asignar exámenes</h1>
+    <p class="text-gray-600 mb-6">Envía un enlace único de evaluación al aspirante.</p>
+    <form action="/rh/asignar" method="post" class="space-y-4">
+      <div class="grid md:grid-cols-2 gap-4">
+        <input name="nombre" placeholder="Nombre aspirante"
+               class="border p-3 rounded" required>
+        <input name="correo" placeholder="Correo aspirante"
+               class="border p-3 rounded" required>
+      </div>
+      <p class="font-semibold text-[#081f5c]">Selecciona exámenes:</p>
+      <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-2 max-h-44 overflow-y-auto border p-3 rounded">
+        {% for ex in exams %}
+          <label class="flex items-center gap-2 text-sm">
+            <input type="checkbox" name="examenes" value="{{ ex._id }}">
+            {{ ex.nombre }}
+          </label>
+        {% endfor %}
+      </div>
+      <button class="btn-primary">Asignar</button>
+    </form>
+  </div>
+  <img src="https://undraw-static.vercel.app/illustrations/undraw_share_link_re_54rx.svg"
+       class="w-full max-h-72 object-contain" alt="assign"/>
+</section>
+{% endblock %}
