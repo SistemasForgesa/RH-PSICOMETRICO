@@ -22,7 +22,8 @@ h1, h2, h3 {
 
 h1 {
     font-size: 2.5em; /* Tamaño más grande para el título principal */
-    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    /* Nueva tipografía para el h1 principal: Roboto */
+    font-family: 'Roboto', sans-serif;
     text-align: center; /* Asegurar centrado */
     margin-bottom: 0.5em; /* Espacio debajo del h1 */
 }
