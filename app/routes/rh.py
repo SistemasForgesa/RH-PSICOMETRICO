@@ -39,7 +39,11 @@ async def home(request: Request):
 # ─────────────────────────  SUBIR EXAMEN (página)  ────────────────────
 @router.get("/subir", response_class=HTMLResponse)
 async def subir_page(request: Request):
-    return templates.TemplateResponse("subir.html", {"request": request})
+    all_exams = list(exams.find()) # Obtener la lista de exámenes de la base de datos
+    return templates.TemplateResponse(
+        "subir.html",
+        {"request": request, "exams": all_exams} # Pasar la lista de exámenes a la plantilla
+    )
 
 
 @router.post("/upload")
@@ -85,19 +89,4 @@ async def asignar_examen(request: Request):
 # ─────────────────────────  ASPIRANTES (página)  ──────────────────────
 @router.get("/aspirantes", response_class=HTMLResponse)
 async def aspirantes_page(request: Request):
-    aspirantes = list(candidates.find())
-    return templates.TemplateResponse(
-        "aspirantes.html",
-        {"request": request, "aspirantes": aspirantes},
-    )
-
-
-# ───────────────────────  PANEL COMPLETO (legacy)  ────────────────────
-@router.get("/panel", response_class=HTMLResponse)
-async def rh_panel(request: Request):
-    all_exams   = list(exams.find())
-    aspirantes  = list(candidates.find())
-    return templates.TemplateResponse(
-        "panel.html",
-        {"request": request, "exams": all_exams, "aspirantes": aspirantes},
-    )
+    aspirantes = list(candidates.find())\n    return templates.TemplateResponse(\n        "aspirantes.html",\n        {"request": request, "aspirantes": aspirantes},\n    )\n\n\n# ───────────────────────  PANEL COMPLETO (legacy)  ────────────────────\n@router.get("/panel", response_class=HTMLResponse)\nasync def rh_panel(request: Request):\n    all_exams   = list(exams.find())\n    aspirantes  = list(candidates.find())\n    return templates.TemplateResponse(\n        "panel.html",\n        {"request": request, "exams": all_exams, "aspirantes": aspirantes},\n    )\n
