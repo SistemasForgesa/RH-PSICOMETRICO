@@ -6,7 +6,7 @@ from pymongo import MongoClient
 from dotenv import load_dotenv
 from app.services import converter, emailer
 import os, uuid
-import io # Importar la librería io
+# import io # Ya no necesitamos importar io
 
 load_dotenv()
 
@@ -50,20 +50,15 @@ async def subir_page(request: Request):
 @router.post("/upload")
 async def upload_exam(nombre: str = Form(...), archivo: UploadFile = File(...)):
     try:
-        # Leer el contenido del archivo subido
-        contents = await archivo.read()
-        # Usar io.BytesIO para pasar el contenido como un archivo en memoria
-        docx_file = io.BytesIO(contents)
-
-        # Pasar el archivo en memoria a la función de conversión
-        html_content = await converter.convert_docx_to_html(docx_file)
+        # Pasar el objeto UploadFile directamente a la función de conversión
+        html_content = await converter.convert_docx_to_html(archivo)
 
         exams.insert_one({"nombre": nombre, "html": html_content})
         return RedirectResponse(url="/rh/subir", status_code=303)
     except Exception as e:
         # Imprimir el error en la consola del servidor
         print(f"Error al subir el examen: {e}")
-        # Opcional: Devolver un error más amigable al usuario
+        # Devolver el detalle del error al usuario
         raise HTTPException(status_code=500, detail=f"Error interno del servidor al procesar el archivo: {e}")
 
 
