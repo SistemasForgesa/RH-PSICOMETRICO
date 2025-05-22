@@ -1,0 +1,43 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<section class="bg-white p-6 rounded-lg shadow-md mb-12">
+    <h1 class="text-3xl font-bold text-[#081f5c] mb-6 text-center">Subir Examen</h1>
+
+    <div class="grid md:grid-cols-2 gap-8">
+        <div>
+            <h2 class="text-2xl font-bold text-[#081f5c] mb-4">Subir Nuevo Examen</h2>
+            <form action="/rh/upload" method="post" enctype="multipart/form-data" class="space-y-4">
+                <div>
+                    <label for="nombre" class="block text-sm font-medium text-gray-700">Nombre del Examen:</label>
+                    <input type="text" name="nombre" id="nombre" required
+                           class="mt-1 block w-full border p-3 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                </div>
+                <div>
+                    <label for="archivo" class="block text-sm font-medium text-gray-700">Archivo (.docx):</label>
+                    <input type="file" name="archivo" id="archivo" accept=".docx" required
+                           class="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100">
+                </div>
+                <button type="submit" class="btn-primary">Subir Examen</button>
+            </form>
+        </div>
+
+        <div>
+            <h2 class="text-2xl font-bold text-[#081f5c] mb-4">Exámenes Cargados</h2>
+            {% if exams %}
+                <ul class="border rounded-md divide-y divide-gray-200 max-h-60 overflow-y-auto">
+                    {% for exam in exams %}
+                        <li class="px-4 py-3 flex items-center justify-between">
+                            <span class="text-gray-800">{{ exam.nombre }}</span>
+                            {# Opcional: botón o enlace para ver/descargar el examen #}
+                            {# <a href="#" class="text-blue-600 hover:text-blue-900 text-sm">Ver</a> #}
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p class="text-gray-600">No hay exámenes cargados aún.</p>
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% endblock %}
