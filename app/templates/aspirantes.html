@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}{% block content %}
+<h1 class="text-3xl font-bold text-[#081f5c] mb-8">Aspirantes</h1>
+
+<div class="grid md:grid-cols-2 gap-6">
+  {% for asp in aspirantes %}
+  <div class="card bg-white p-6">
+    <h3 class="text-lg font-bold mb-2">{{ asp.nombre }}</h3>
+    <p class="text-sm mb-2 text-gray-600">{{ asp.correo }}</p>
+    {% if asp.resultados %}
+      <span class="text-xs bg-green-100 text-green-700 px-2 py-1 rounded">Completado</span>
+    {% else %}
+      <span class="text-xs bg-yellow-100 text-yellow-700 px-2 py-1 rounded">Pendiente</span>
+    {% endif %}
+    <a href="/rh/resultados/{{ asp._id }}" class="btn-primary mt-4 inline-block">Ver detalles</a>
+  </div>
+  {% endfor %}
+  {% if aspirantes|length == 0 %}
+    <p class="text-gray-500 col-span-full">Aún no hay aspirantes registrados.</p>
+  {% endif %}
+</div>
+{% endblock %}
