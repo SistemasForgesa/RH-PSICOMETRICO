@@ -1,0 +1,45 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold text-center text-[#081f5c] mb-8">Aplicar Examen a Aspirante</h1>
+
+    <form action="{{ url_for('apply.apply') }}" method="post" class="max-w-md mx-auto bg-white p-6 rounded-lg shadow-md">
+        <div class="mb-4">
+            <label for="nombre_aspirante" class="block text-gray-700 text-sm font-bold mb-2">Nombre Completo:</label>
+            <input type="text" id="nombre_aspirante" name="nombre_aspirante" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+        </div>
+
+        <div class="mb-4">
+            <label for="edad" class="block text-gray-700 text-sm font-bold mb-2">Edad:</label>
+            <input type="number" id="edad" name="edad" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+        </div>
+
+        <div class="mb-4">
+            <label for="puesto" class="block text-gray-700 text-sm font-bold mb-2">Puesto al que Aplica:</label>
+            <input type="text" id="puesto" name="puesto" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+        </div>
+
+        <div class="mb-4">
+            <label for="escolaridad" class="block text-gray-700 text-sm font-bold mb-2">Escolaridad:</label>
+            <input type="text" id="escolaridad" name="escolaridad" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+        </div>
+
+        <div class="mb-6">
+            <label class="block text-gray-700 text-sm font-bold mb-2">Seleccione los Exámenes:</label>
+            {% for examen in examenes %}
+                <div class="mb-2">
+                    <input type="checkbox" id="examen_{{ loop.index }}" name="examenes" value="{{ examen }}" class="mr-2 leading-tight">
+                    <label for="examen_{{ loop.index }}" class="text-gray-700">{{ examen }}</label>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="flex items-center justify-between">
+            <button type="submit" class="bg-[#081f5c] hover:bg-[#0b2e8c] text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                Iniciar Examen
+            </button>
+        </div>
+    </form>
+</div>
+{% endblock %}
