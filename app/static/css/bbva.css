@@ -1,39 +1,34 @@
-/*  ───────────  VARIABLES  ─────────── */
 :root {
-  --bbva-blue: #081f5c;         /* azul marino principal */
-  --bbva-blue-light: #0b2e8c;   /* hover / variante */
-  --bbva-blue: #0047ba;
-  --bbva-gray-bg: #f5f7fa;      /* gris de fondo suave */
-  --bbva-light-gray: #f4f4f4; /* Un gris claro para fondos */
-  --bbva-dark-gray: #666666;
-  --bbva-white: #ffffff; /* Blanco */
+    --bbva-blue: #0047ba; /* Un azul similar al de BBVA */
+    --bbva-dark-blue: #081f5c; /* El azul oscuro que ya tienes */
+    --bbva-light-gray: #f4f4f4; /* Un gris claro para fondos */
+    --bbva-gray: #cccccc; /* Un gris medio */
+    --bbva-dark-gray: #666666; /* Un gris oscuro para texto */
+    --bbva-white: #ffffff; /* Blanco */
 }
 
-/*  ───────────  RESET / BASE  ─────────── */
 body {
-  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
-  font-family: sans-serif;
-  color: #111827;
-  color: var(--bbva-dark-gray);
-  background-color: var(--bbva-light-gray);
-  padding: 20px;
-}
-.scroll-smooth {
-  scroll-behavior: smooth;
+    font-family: sans-serif; /* Una fuente simple y moderna */
+    line-height: 1.6;
+    color: var(--bbva-dark-gray); /* Color de texto principal */
+    background-color: var(--bbva-light-gray); /* Fondo gris claro */
+    padding: 20px; /* Espaciado general */
 }
 
-/*  ───────────  COMPONENTES  ─────────── */
 h1, h2, h3 {
-  color: var(--bbva-dark-blue);
-  font-weight: bold;
+    color: var(--bbva-dark-blue); /* Color azul oscuro para encabezados */
+    font-weight: bold;
 }
+
 h1 {
-    font-size: 2.5em;
-    /* Nueva tipografía para el h1 principal */
+    font-size: 2.5em; /* Tamaño más grande para el título principal */
     font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     text-align: center; /* Asegurar centrado */
     margin-bottom: 0.5em; /* Espacio debajo del h1 */
+}
+
+section h1 {
+    white-space: nowrap; /* Intenta mantener el texto en una sola línea */
 }
 
 h2 {
@@ -42,120 +37,69 @@ h2 {
     text-align: center; /* Asegurar centrado */
 }
 
-.card {
-  background: #fff;
-  border-radius: 1rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-}
-
-/* Botón base */
-.btn {
-  display: inline-block;
-  cursor: pointer;
-  font-weight: 600;
-  transition: all 0.2s ease;
-  text-align: center;
-  user-select: none;
-}
-
-/* Primario (relleno azul) */
-.btn-primary {
-  background: var(--bbva-blue);
-  color: var(--bbva-white);
-  padding: 10px 20px;
-  border-radius: 5px;
-  text-decoration: none; /* Quitar subrayado */
-  transition: background-color 0.3s ease;
-}
-.btn-primary:hover {
-  background-color: #003a99;
-}
-
-/* Contorno */
-.btn-outline {
-  border: 2px solid var(--bbva-blue);
-  color: var(--bbva-blue);
-  padding: 10px 20px;
-  border-radius: 5px; /* Bordes redondeados */
-  text-decoration: none;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-.btn-outline:hover {
-  background-color: var(--bbva-blue);
-  color: var(--bbva-white);
-}
-
 section {
-  margin-bottom: 40px;
-  background-color: var(--bbva-white);
-  padding: 30px;
-  border-radius: 8px;
+    margin-bottom: 40px; /* Espacio debajo de las secciones */
+    background-color: var(--bbva-white); /* Fondo blanco para la sección */
+    padding: 30px; /* Relleno dentro de la sección */
+    border-radius: 8px; /* Bordes ligeramente redondeados */
     /* Sombra más remarcada */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
-}
-section img { border-radius: 8px; }
 
-/* Inputs y selects */
-input[type="text"],
-input[type="email"],
-input[type="file"],
-select,
-textarea {
-  border: 1px solid #d1d5db;
-  border-radius: 0.5rem;
-  padding: 0.55rem 1rem;
-  width: 100%;
-}
-input:focus,
-select:focus,
-textarea:focus {
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(8, 31, 92, 0.2);
-  border-color: var(--bbva-blue);
+section img {
+    border-radius: 8px; /* Bordes redondeados para la imagen */
 }
 
-/* Etiquetas de checkbox inline */
-label.inline-flex {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  cursor: pointer;
+.btn-primary {
+    display: inline-block; /* Asegurar que el padding funcione */
+    background-color: var(--bbva-blue); /* Fondo azul principal */
+    color: var(--bbva-white); /* Texto blanco */
+    padding: 10px 20px;
+    border-radius: 5px; /* Bordes redondeados */
+    text-decoration: none; /* Quitar subrayado */
+    transition: background-color 0.3s ease; /* Transición suave al pasar el cursor */
 }
 
-/* Pequeñas badgets de estado */
-.badge {
-  display: inline-block;
-  padding: 0.2rem 0.6rem;
-  font-size: 0.75rem;
-  font-weight: 600;
-  border-radius: 0.5rem;
-}
-.badge-success {
-  background: #dcfce7;
-  color: #16a34a;
-}
-.badge-warning {
-  background: #fef9c3;
-  color: #eab308;
+.btn-primary:hover {
+    background-color: #003a99; /* Un azul un poco más oscuro al pasar el cursor */
 }
 
-/* Tarjetas (quick actions) */
+.btn-outline {
+    display: inline-block;
+    border: 2px solid var(--bbva-blue); /* Borde azul */
+    color: var(--bbva-blue); /* Texto azul */
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-outline:hover {
+    background-color: var(--bbva-blue); /* Fondo azul al pasar el cursor */
+    color: var(--bbva-white); /* Texto blanco al pasar el cursor */
+}
+
 .card {
-  background-color: var(--bbva-white);
-  padding: 20px;
-  border-radius: 8px;
-  /* Sombra más remarcada */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.card svg { color: var(--bbva-blue); }
-
-/*  ───────────  UTILIDADES EXTRA  ─────────── */
-.shadow-hover:hover {
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
-}
-.rounded-xl {
-  border-radius: 1rem;
+    background-color: var(--bbva-white); /* Fondo blanco */
+    padding: 20px;
+    border-radius: 8px;
+    /* Sombra más remarcada */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transición suave */
 }
 
+.card:hover {
+    transform: translateY(-5px); /* Efecto de levantar ligeramente */
+    /* Sombra más pronunciada al pasar el cursor */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.card svg {
+    color: var(--bbva-blue); /* Iconos en azul */
+}
+
+/* Estilo específico para el contenedor del texto principal para asegurar centrado */
+.grid.md\:grid-cols-2.gap-10.items-center.mb-16 > div {
+    text-align: center;
+    margin: 0 auto; /* Centrar el bloque si es necesario */
+}
