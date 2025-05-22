@@ -2,7 +2,7 @@
 <section class="grid md:grid-cols-1 gap-10 items-center mb-16"> {# Cambiado a md:grid-cols-1 para centrar mejor el texto #}
   <div class="text-center mx-auto">
     <h1 class="text-4xl md:text-5xl font-extrabold text-[#081f5c] mb-6">
-      Pruebas <br>Psicométricas
+      Pruebas Psicométricas {# Texto en una sola línea en el HTML #}
     </h1>
     <p class="text-gray-600 mb-8">
       Gestiona exámenes, candidatos y resultados&nbsp;en un solo lugar.
@@ -20,19 +20,18 @@
     <h3 class="font-bold">Subir examen</h3>
   </a>
   <a href="/rh/asignar" class="card p-6 hover:shadow-lg transition text-center">
-    {# Icono para Asignar exámenes #}
+    {# Nuevo Icono para Asignar exámenes (ejemplo: documento con flecha) #}
     <svg class="w-10 h-10 mx-auto text-[#081f5c] mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12h.01"></path>
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
     </svg>
     <h3 class="font-bold">Asignar exámenes</h3>
   </a>
   <a href="/rh/aspirantes" class="card p-6 hover:shadow-lg transition text-center">
-    {# Icono para Aspirantes #}
-    <svg class="w-10 h-10 mx-auto text-[#081f5c] mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0h4m-4 6h4m-2 4h2"></path>
+    {# Nuevo Icono para Aspirantes (ejemplo: usuario con verificación) #}
+     <svg class="w-10 h-10 mx-auto text-[#081f5c] mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.939 13.939 0 0112 16c2.5 0 4.938.807 6.879 2.196M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8h12a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2z"></path>
     </svg>
     <h3 class="font-bold">Aspirantes</h3>
   </a>
 </div>
 {% endblock %}
-
