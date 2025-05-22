@@ -1,22 +1,20 @@
 {% extends 'layout.html' %}{% block content %}
 <section class="grid md:grid-cols-2 gap-10 items-center mb-16">
-  <div>
+  <div class="text-center mx-auto"> {# Añadido mx-auto y text-center para centrar #}
     <h1 class="text-4xl md:text-5xl font-extrabold text-[#081f5c] mb-6">
-      Soluciones <br>Psicométricas
+      Pruebas <br>Psicométricas {# Texto modificado #}
     </h1>
     <p class="text-gray-600 mb-8">
       Gestiona exámenes, candidatos y resultados&nbsp;en un solo lugar.
     </p>
-    <div class="flex gap-4">
-      <a href="/rh/asignar" class="btn-primary">Asignar examen</a>
-      <a href="/rh/aspirantes" class="btn-outline">Aspirantes</a>
-    </div>
+    {# Botones eliminados #}
   </div>
+  {# Puedes decidir si mantener o eliminar la imagen. Si la mantienes, considera si encaja con el diseño centrado. #}
   <img src="https://undraw-static.vercel.app/illustrations/undraw_files_sent_re_q1fm.svg"
-       alt="hero illus" class="w-full max-h-80 object-contain">
+       alt="hero illus" class="w-full max-h-80 object-contain mx-auto"> {# Añadido mx-auto para centrar la imagen si se mantiene #}
 </section>
 
-<h2 class="text-center text-3xl font-bold text-[#081f5c] mb-8">Acciones rápidas</h2>
+<h2 class="text-center text-3xl font-bold text-[#081f5c] mb-8">¿Qué haremos hoy?</h2> {# Texto modificado #}
 <div class="grid md:grid-cols-3 gap-6 mb-20">
   <a href="/rh/subir" class="card p-6 hover:shadow-lg transition text-center">
     <svg class="w-10 h-10 mx-auto text-[#081f5c] mb-3" fill="none" stroke="currentColor"
