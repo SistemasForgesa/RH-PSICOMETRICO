@@ -1,18 +1,18 @@
-from fastapi import FastAPI
-from fastapi.staticfiles import StaticFiles
-from fastapi.templating import Jinja2Templates
-from app.routes import rh, applicant
-from app.routes import results 
+from flask import Flask, render_template
+# ... otras importaciones
+from app.routes.rh import rh_bp # Si ya tienes este
+from app.routes.results import results_bp # Si ya tienes este
+from app.routes.apply import apply_bp # <--- Agrega esta línea
 
-app = FastAPI()
+app = Flask(__name__)
+# ... otras configuraciones
 
-app.mount("/static", StaticFiles(directory="app/static"), name="static")
-templates = Jinja2Templates(directory="app/templates")
+app.register_blueprint(rh_bp, url_prefix='/rh') # Si ya tienes este
+app.register_blueprint(results_bp, url_prefix='/results') # Si ya tienes este
+app.register_blueprint(apply_bp) # <--- Agrega esta línea
 
-app.include_router(rh.router, prefix="/rh")
-app.include_router(applicant.router, prefix="/aspirante")
-app.include_router(results.router, prefix="/rh/resultados")
-
-@app.get("/")
+@app.route('/')
 def home():
-    return {"message": "Sistema psicométrico activo"}
+    return render_template('home.html')
+
+# ... otras rutas
