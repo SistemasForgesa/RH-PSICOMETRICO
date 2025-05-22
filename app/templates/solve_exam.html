@@ -1,0 +1,40 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold text-center text-[#081f5c] mb-8">{{ examen.nombre }}</h1> {# Muestra el nombre del examen #}
+
+    <form action="{{ url_for('apply.solve_exam', aspirant_id=aspirant_id, exam_id=exam_id) }}" method="post" class="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-md">
+
+        {# Campos ocultos para enviar el ID del aspirante y del examen #}
+        <input type="hidden" name="aspirant_id" value="{{ aspirant_id }}">
+        <input type="hidden" name="exam_id" value="{{ exam_id }}">
+
+        {% for pregunta in examen.preguntas %}
+            <div class="mb-6">
+                <p class="block text-gray-700 text-base font-bold mb-3">Pregunta {{ loop.index }}: {{ pregunta.texto }}</p>
+
+                {% for opcion in pregunta.opciones %}
+                    <div class="ml-4 mb-2">
+                        <input type="radio"
+                               id="pregunta_{{ loop.parentloop.index }}_opcion_{{ loop.index }}"
+                               name="respuesta_pregunta_{{ pregunta.id }}" {# Usamos un nombre único basado en el ID de la pregunta #}
+                               value="{{ opcion }}" {# El valor podría ser la letra (a, b, c) o el texto completo de la opción, según cómo lo manejes #}
+                               class="mr-2 leading-tight">
+                        <label for="pregunta_{{ loop.parentloop.index }}_opcion_{{ loop.index }}" class="text-gray-700">{{ opcion }}</label>
+                    </div>
+                {% endfor %}
+            </div>
+            {% if not loop.last %}
+                <hr class="my-6 border-gray-300"> {# Separador entre preguntas #}
+            {% endif %}
+        {% endfor %}
+
+        <div class="flex items-center justify-center mt-8">
+            <button type="submit" class="bg-[#081f5c] hover:bg-[#0b2e8c] text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                Siguiente / Finalizar Examen
+            </button>
+        </div>
+    </form>
+</div>
+{% endblock %}
